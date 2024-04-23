@@ -78,9 +78,9 @@ class Loader:
         return transforms.Compose(
             [
                 transforms.Resize((self.image_size, self.image_size), Image.BICUBIC),
-                transforms.ToTensor(),
                 transforms.RandomCrop((self.image_size, self.image_size)),
-                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+                transforms.ToTensor(),
+                transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
             ]
         )
 
@@ -155,7 +155,9 @@ class Loader:
                     if image_base_name == masks_base_name:
 
                         X = cv2.imread(os.path.join(self.images, image))
+                        X = cv2.cvtColor(X, cv2.COLOR_BGR2RGB)
                         y = cv2.imread(os.path.join(self.masks, mask))
+                        y = cv2.cvtColor(y, cv2.COLOR_BGR2RGB)
 
                         self.X.append(self.image_transforms()(Image.fromarray(X)))
                         self.y.append(self.image_transforms()(Image.fromarray(y)))
@@ -262,7 +264,7 @@ class Loader:
                 plt.axis("off")
 
                 plt.subplot(2 * 4, 2 * 4, 2 * index + 2)
-                plt.imshow(y, cmap="gray")
+                plt.imshow(y)
                 plt.title("y")
                 plt.axis("off")
 
