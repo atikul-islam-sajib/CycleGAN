@@ -4,6 +4,7 @@ import argparse
 import cv2
 from PIL import Image
 import zipfile
+from tqdm import tqdm
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
@@ -146,7 +147,7 @@ class Loader:
             self.images = os.path.join(self.directory, os.listdir(self.directory)[0])
             self.masks = os.path.join(self.directory, os.listdir(self.directory)[1])
 
-            for image in os.listdir(self.images):
+            for image in tqdm(os.listdir(self.images)):
                 for mask in os.listdir(self.masks):
                     image_base_name = image.split(".")[0]
                     masks_base_name = mask.split(".")[0]
