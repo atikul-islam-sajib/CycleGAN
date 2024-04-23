@@ -61,20 +61,12 @@ class Loader:
                     masks_base_name = mask.split(".")[0]
 
                     if image_base_name == masks_base_name:
-                        self.X.append(
-                            self.image_transforms()(
-                                Image.fromarray(
-                                    cv2.imread(os.path.join(self.images, image))
-                                )
-                            )
-                        )
-                        self.y.append(
-                            self.image_transforms()(
-                                Image.fromarray(
-                                    cv2.imread(os.path.join(self.masks, mask))
-                                )
-                            )
-                        )
+
+                        X = cv2.imread(os.path.join(self.images, image))
+                        y = cv2.imread(os.path.join(self.masks, mask))
+
+                        self.X.append(self.image_transforms()(Image.fromarray(X)))
+                        self.y.append(self.image_transforms()(Image.fromarray(y)))
 
             X_train, X_test, y_train, y_test = self.image_splits(X=self.X, y=self.y)
 
