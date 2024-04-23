@@ -249,18 +249,23 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.image_path:
-        loader = Loader(
-            image_path=args.image_path,
-            image_size=args.image_size,
-            batch_size=args.batch_size,
-            split_size=args.split_size,
-        )
+        try:
+            loader = Loader(
+                image_path=args.image_path,
+                image_size=args.image_size,
+                batch_size=args.batch_size,
+                split_size=args.split_size,
+            )
+        except AttributeError as e:
+            print("The exception is: {}".format(e))
 
-        loader.unzip_folder()
-        loader.create_dataloader()
+        else:
+            loader.unzip_folder()
+            loader.create_dataloader()
 
-        Loader.plot_images()
-        Loader.dataset_details()
+        finally:
+            Loader.plot_images()
+            Loader.dataset_details()
 
     else:
         raise Exception("Unable to find the zip file".capitalize())
