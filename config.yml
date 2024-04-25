@@ -17,6 +17,8 @@ path:
   raw_path : ../../data/raw/
   processed_path : ../../data/processed/
   files_path: ../../research/files/
+  train_netG_XtoY: ../../checkpoints/train_models_netG_XtoY/
+  train_netG_YtoX: ../../checkpoints/train_models_netG_YtoX/
 
 model:
   beta1: 0.5
