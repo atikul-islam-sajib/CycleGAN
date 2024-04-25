@@ -21,6 +21,7 @@ path:
   train_netG_YtoX: ../../checkpoints/train_models_netG_YtoX/
   best_model: ../../checkpoints/best_models/
   train_results: ../../outputs/train_results/
+  train_metrics: ../../metrics/
 
 model:
   beta1: 0.5
