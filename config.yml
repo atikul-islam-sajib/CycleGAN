@@ -1,28 +1,13 @@
-# path:
-#   raw_path : ./data/raw/
-#   processed_path : ./data/processed/
-#   files_path: ./research/files/
-
-# model:
-#   beta1: 0.5
-#   beta2: 0.999
-#   momentum: 0.9
-#   step_size: 10
-#   gamma: 0.5
-
-
-# For notebook purposes
-
 path:
-  raw_path : ../../data/raw/
-  processed_path : ../../data/processed/
-  files_path: ../../research/files/
-  train_netG_XtoY: ../../checkpoints/train_models_netG_XtoY/
-  train_netG_YtoX: ../../checkpoints/train_models_netG_YtoX/
-  best_model: ../../checkpoints/best_models/
-  model_history: ../../checkpoints/model_history/
-  train_results: ../../outputs/train_results/
-  train_metrics: ../../metrics/
+  raw_path : ./data/raw/
+  processed_path : ./data/processed/
+  files_path: ./research/files/
+  train_netG_XtoY: ./checkpoints/train_models_netG_XtoY/
+  train_netG_YtoX: ./checkpoints/train_models_netG_YtoX/
+  best_model: ./checkpoints/best_models/
+  model_history: ./checkpoints/model_history/
+  train_results: ./outputs/train_results/
+  train_metrics: ./metrics/
 
 model:
   beta1: 0.5
@@ -31,3 +16,25 @@ model:
   step_size: 10
   gamma: 0.5
   reg_lambda: 0.01
+
+
+# For notebook purposes
+
+# path:
+#   raw_path : ../../data/raw/
+#   processed_path : ../../data/processed/
+#   files_path: ../../research/files/
+#   train_netG_XtoY: ../../checkpoints/train_models_netG_XtoY/
+#   train_netG_YtoX: ../../checkpoints/train_models_netG_YtoX/
+#   best_model: ../../checkpoints/best_models/
+#   model_history: ../../checkpoints/model_history/
+#   train_results: ../../outputs/train_results/
+#   train_metrics: ../../metrics/
+
+# model:
+#   beta1: 0.5
+#   beta2: 0.999
+#   momentum: 0.9
+#   step_size: 10
+#   gamma: 0.5
+#   reg_lambda: 0.01

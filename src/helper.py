@@ -84,22 +84,22 @@ def helper(**kwargs):
             params=netD_Y.parameters(), lr=lr, momentum=params()["model"]["momentum"]
         )
 
-    if lr_scheduler:
-        schedulerG = StepLR(
-            optimizer=optimizer_G,
-            step_size=params()["model"]["step_size"],
-            gamma=params()["model"]["gamma"],
-        )
-        scheduler_D_X = StepLR(
-            optimizer=optimizer_D_X,
-            step_size=params()["model"]["step_size"],
-            gamma=params()["model"]["gamma"],
-        )
-        scheduler_D_Y = StepLR(
-            optimizer=optimizer_D_Y,
-            step_size=params()["model"]["step_size"],
-            gamma=params()["model"]["gamma"],
-        )
+    # if lr_scheduler:
+    #     schedulerG = StepLR(
+    #         optimizer=optimizer_G,
+    #         step_size=params()["model"]["step_size"],
+    #         gamma=params()["model"]["gamma"],
+    #     )
+    #     scheduler_D_X = StepLR(
+    #         optimizer=optimizer_D_X,
+    #         step_size=params()["model"]["step_size"],
+    #         gamma=params()["model"]["gamma"],
+    #     )
+    #     scheduler_D_Y = StepLR(
+    #         optimizer=optimizer_D_Y,
+    #         step_size=params()["model"]["step_size"],
+    #         gamma=params()["model"]["gamma"],
+    #     )
 
     try:
         dataloader = load_dataloader()
@@ -118,9 +118,9 @@ def helper(**kwargs):
         "optimizer_G": optimizer_G,
         "optimizer_D_X": optimizer_D_X,
         "optimizer_D_Y": optimizer_D_Y,
-        "schedulerG": schedulerG,
-        "scheduler_D_X": scheduler_D_X,
-        "scheduler_D_Y": scheduler_D_Y,
+        # "schedulerG": schedulerG,
+        # "scheduler_D_X": scheduler_D_X,
+        # "scheduler_D_Y": scheduler_D_Y,
         "train_dataloader": dataloader["train_dataloader"],
         "test_dataloader": dataloader["test_dataloader"],
         "adversarial_loss": adversarial_loss,

@@ -364,12 +364,27 @@ class Trainer:
 
             for index, loss in enumerate([G_losses, D_X_loss, D_y_loss]):
                 plt.subplot(1, 3, index + 1)
-                plt.plot(loss)
-                plt.axis("off")
+                plt.plot(
+                    loss,
+                    label=(
+                        "G_loss"
+                        if index == 0
+                        else "D_X_loss" if index == 1 else "D_y_loss"
+                    ),
+                )
+                plt.legend()
                 plt.xlabel("Epochs")
                 plt.ylabel("Loss")
 
             plt.tight_layout()
+
+            if os.path.exists(config["path"]["files_path"]):
+                plt.savefig(
+                    os.path.join(config["path"]["files_path"], "train_metrics.png")
+                )
+            else:
+                raise FileNotFoundError("Files path is not found".capitalize())
+
             plt.show()
 
         else:
@@ -442,6 +457,8 @@ if __name__ == "__main__":
         )
 
         trainer.train()
+
+        trainer.plot_history()
 
     else:
         raise ValueError("Provide the appropriate argument".capitalize())
