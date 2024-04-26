@@ -122,7 +122,7 @@ def cli():
 
         trainer.plot_history()
 
-        with open("trained_config.yaml", "w") as file:
+        with open("trained_config.yml", "w") as file:
             yaml.safe_dump(
                 data={
                     "trained_params": {
