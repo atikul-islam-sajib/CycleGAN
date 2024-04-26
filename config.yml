@@ -7,6 +7,8 @@ path:
   best_model: ./checkpoints/best_models/
   model_history: ./checkpoints/model_history/
   train_results: ./outputs/train_results/
+  train_gif: ./outputs/train_gif
+  test_result : ./outputs/test_result/
   train_metrics: ./metrics/
 
 model:
