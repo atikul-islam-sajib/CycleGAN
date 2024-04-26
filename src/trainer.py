@@ -138,9 +138,9 @@ class Trainer:
         reconstructed_y = self.netG_XtoY(kwargs["fake_x"])
         loss_cycle_y = self.cycle_consistency_loss(reconstructed_y, kwargs["real_y"])
 
-        total_G_loss = loss_fake_y + loss_fake_x + 10 * loss_cycle_x + 10 * loss_cycle_y
+        total_G_loss = 5.0 * (loss_fake_y + loss_fake_x) + 10 * loss_cycle_x + 10 * loss_cycle_y
 
-        total_G_loss.backward(retain_graph=True)
+        total_G_loss.backward()
         self.optimizer_G.step()
 
         return total_G_loss.item()
@@ -160,7 +160,7 @@ class Trainer:
 
         total_D_X_loss = (loss_real_x + loss_fake_x) * 0.5
 
-        total_D_X_loss.backward(retain_graph=True)
+        total_D_X_loss.backward()
         self.optimizer_D_X.step()
 
         return total_D_X_loss.item()
@@ -180,7 +180,7 @@ class Trainer:
 
         total_D_Y_loss = (loss_real_y + loss_fake_y) * 0.5
 
-        total_D_Y_loss.backward(retain_graph=True)
+        total_D_Y_loss.backward()
         self.optimizer_D_Y.step()
 
         return total_D_Y_loss.item()
@@ -276,8 +276,8 @@ class Trainer:
                 fake_y = self.netG_XtoY(X)
                 fake_x = self.netG_YtoX(y)
 
-                D_y_loss.append(self.update_netD_Y(fake_y=fake_y, real_y=y))
-                D_X_loss.append(self.update_netD_X(fake_x=fake_x, real_x=X))
+                D_y_loss.append(self.update_netD_Y(fake_y=fake_y.detach(), real_y=y))
+                D_X_loss.append(self.update_netD_X(fake_x=fake_x.detach(), real_x=X))
 
                 G_losses.append(
                     self.update_generator(
