@@ -151,8 +151,11 @@ class TestModel:
         self.netG_XtoY.load_state_dict(self.select_best_model()["netG_XtoY"])
         self.netGYtoX.load_state_dict(self.select_best_model()["netG_YtoX"])
 
-        self.plot(dataloader=dataloader)
-        self.create_gif()
+        try:
+            self.plot(dataloader=dataloader)
+            self.create_gif()
+        except Exception as e:
+            print("The exception is {}".format(e))
 
 
 if __name__ == "__main__":
