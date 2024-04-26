@@ -1,6 +1,7 @@
 import sys
 import os
 import argparse
+import yaml
 
 sys.path.append("src/")
 
@@ -84,14 +85,12 @@ def cli():
     )
     parser.add_argument(
         "--test_result",
-        type=str,
-        default="test_result",
+        action="store_true",
         help="Define the path to save the test result".capitalize(),
     )
     parser.add_argument(
         "--train",
-        type=str,
-        default="train_result",
+        action="store_true",
         help="Define the path to save the train result".capitalize(),
     )
     args = parser.parse_args()
@@ -122,6 +121,27 @@ def cli():
         trainer.train()
 
         trainer.plot_history()
+
+        with open("trained_config.yaml", "w") as file:
+            yaml.safe_dump(
+                data={
+                    "trained_params": {
+                        "image_path": args.image_path,
+                        "image_size": args.image_size,
+                        "batch_size": args.batch_size,
+                        "split_size": args.split_size,
+                        "in_channels": args.in_channels,
+                        "epochs": args.epochs,
+                        "lr": args.lr,
+                        "device": args.device,
+                        "is_display": args.is_display,
+                        "adam": args.adam,
+                        "SGD": args.SGD,
+                    }
+                },
+                file=file,
+                default_flow_style=False,
+            )
 
     elif args.test_result:
 

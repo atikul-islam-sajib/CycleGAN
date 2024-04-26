@@ -13,10 +13,11 @@ from generator import Generator
 
 
 class TestModel:
-    def __init__(self, in_channels=3, device="mps"):
+    def __init__(self, in_channels=3, device="mps", create_gif=False):
         self.in_channels = in_channels
         self.device = device_init(device=device)
         self.config = params()
+        self.is_gif = create_gif
 
         self.netG_XtoY = Generator(in_channels=self.in_channels)
         self.netGYtoX = Generator(in_channels=self.in_channels)
@@ -28,7 +29,7 @@ class TestModel:
         if os.path.exists(self.config["path"]["processed_path"]):
             test_dataloader = load(
                 filename=os.path.join(
-                    self.config["path"]["processed_path"], "test_dataloader.pkl"
+                    self.config["path"]["processed_path"], "dataloader.pkl"
                 )
             )
 
@@ -64,6 +65,9 @@ class TestModel:
 
             else:
                 for image in os.listdir(self.config["path"]["train_results"]):
+
+                    if image == ".DS_Store":
+                        pass
 
                     image_path = os.path.join(
                         self.config["path"]["train_results"], image
@@ -153,7 +157,10 @@ class TestModel:
 
         try:
             self.plot(dataloader=dataloader)
-            self.create_gif()
+
+            if self.is_gif:
+                self.create_gif()
+
         except Exception as e:
             print("The exception is {}".format(e))
 
@@ -178,12 +185,20 @@ if __name__ == "__main__":
         default="test_result",
         help="Define the path to save the test result".capitalize(),
     )
+    parser.add_argument(
+        "--gif",
+        type=bool,
+        default=False,
+        help="Create a gif from the test result".capitalize(),
+    )
 
     args = parser.parse_args()
 
     if args.test_result:
 
-        test_model = TestModel(in_channels=args.in_channels, device=args.device)
+        test_model = TestModel(
+            in_channels=args.in_channels, device=args.device, create_gif=args.gif
+        )
         test_model.test()
 
     else:
