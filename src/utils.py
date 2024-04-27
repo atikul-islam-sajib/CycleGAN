@@ -1,3 +1,4 @@
+import os
 import joblib
 import yaml
 import torch
@@ -36,3 +37,22 @@ def device_init(device="mps"):
 
     else:
         return torch.device("cpu")
+
+
+def clean():
+    config = params()
+
+    for path in [
+        "train_netG_XtoY",
+        "train_netG_YtoX",
+        "best_model",
+        "train_results",
+        "single_result",
+        "train_metrics",
+    ]:
+        if os.path.exists(config["path"][path]):
+            for file in os.listdir(config["path"][path]):
+                os.remove(os.path.join(config["path"][path], file))
+
+        else:
+            raise Exception("Could not find path: {}".format(config["path"][path]))

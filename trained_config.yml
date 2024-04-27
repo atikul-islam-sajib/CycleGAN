@@ -1,0 +1,12 @@
+trained_params:
+  SGD: true
+  adam: true
+  batch_size: 1
+  device: mps
+  epochs: 1000
+  image_path: /Users/shahmuhammadraditrahman/Desktop/CycleGAN/data/raw/dataset.zip
+  image_size: 256
+  in_channels: 3
+  is_display: true
+  lr: 0.0002
+  split_size: 0.2

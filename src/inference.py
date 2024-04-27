@@ -43,7 +43,7 @@ class Inference:
         if (self.XtoY is None) and (self.YtoX is None):
             if os.path.exists(self.config["path"]["best_model"]):
                 load_state_dict = torch.load(
-                    self.config["path"]["best_model"], "best_model.pth"
+                    os.path.join(self.config["path"]["best_model"], "best_model.pth")
                 )
 
                 self.netG_XtoY.load_state_dict(load_state_dict["netG_XtoY"])
@@ -100,6 +100,8 @@ class Inference:
         return {"dataloader": dataloader}
 
     def batch_image(self):
+        self.select_best_model()
+
         self.dataloader = self.extract_images()["dataloader"]
         plt.figure(figsize=(10, 5))
 
@@ -138,6 +140,9 @@ class Inference:
             plt.show()
 
     def single_image(self):
+
+        self.select_best_model()
+
         image = Image.fromarray(cv2.imread(self.image))
         image = self.image_transform()(image)
 
