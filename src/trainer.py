@@ -12,7 +12,7 @@ import numpy as np
 
 sys.path.append("src/")
 
-from utils import device_init, params, dump, load
+from utils import device_init, params, dump, load, clean
 from helper import helper
 
 
@@ -69,6 +69,11 @@ class Trainer:
 
         self.adversarial_loss = init["adversarial_loss"]
         self.cycle_consistency_loss = init["cycle_consistency_loss"]
+
+        try:
+            clean()
+        except Exception as e:
+            print("The exception ", e)
 
     def l1(self, model):
         if model is not None:
@@ -138,7 +143,9 @@ class Trainer:
         reconstructed_y = self.netG_XtoY(kwargs["fake_x"])
         loss_cycle_y = self.cycle_consistency_loss(reconstructed_y, kwargs["real_y"])
 
-        total_G_loss = 5.0 * (loss_fake_y + loss_fake_x) + 10 * loss_cycle_x + 10 * loss_cycle_y
+        total_G_loss = (
+            5.0 * (loss_fake_y + loss_fake_x) + 10 * loss_cycle_x + 10 * loss_cycle_y
+        )
 
         total_G_loss.backward()
         self.optimizer_G.step()
