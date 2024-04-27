@@ -1,10 +1,11 @@
 # Cycle GAN Implementation
 
-<img src="https://miro.medium.com/v2/resize:fit:762/1*eNJKtwv7nSqUXcA8Nd3U7Q.png">
+<img src="https://raw.githubusercontent.com/atikul-islam-sajib/Research-Assistant-Work-/main/cycle-gan1.png" alt="AC-GAN - Medical Image Dataset Generator: Generated Image with labels">
+
 
 This project provides a complete framework for training and testing a Cycle Generative Adversarial Network (Cycle-GAN). It includes functionality for data preparation, model training, testing, and inference as well.
 
-<img src="https://raw.githubusercontent.com/atikul-islam-sajib/Research-Assistant-Work-/main/cycle-gan1.png" alt="AC-GAN - Medical Image Dataset Generator: Generated Image with labels">
+<img src="https://miro.medium.com/v2/resize:fit:762/1*eNJKtwv7nSqUXcA8Nd3U7Q.png">
 
 ## Features
 
@@ -74,11 +75,11 @@ This project is thoughtfully organized to support the development, training, and
 - **unittest/**
   - Unit tests ensuring code reliability, correctness, and functionality across various project components.
 
-### Dataset Organization for srgan
+### Dataset Organization for CycleGAN
 
-The dataset is organized into three categories for SRGAN. Each category directly contains paired images and their corresponding lower resolution images and higher resolution, stored together to simplify the association between lower resolution and higher resolution images .
+The dataset is organized into three categories for CycleGAN. Each category directly contains unpaired images and their corresponding  images stored.
 
-## Directory Structure:
+#### Directory Structure:
 
 ```
 dataset/
@@ -120,7 +121,6 @@ The project is controlled via a command line interface (CLI) which allows for ru
 | `--split_size`| Whether to split the dataset             | float   | 0.20   |
 | `--epochs`        | Number of training epochs                    | int    | 100     |
 | `--lr`            | Learning rate                                | float  | 0.0002  |
-| `--is_lr_scheduler`| Enable learning rate scheduler              | bool   | False   |
 | `--device`        | Computation device ('cuda', 'mps', 'cpu')    | str    | 'mps'   |
 | `--adam`          | Use Adam optimizer                           | bool   | True    |
 | `--SGD`           | Use Stochastic Gradient Descent optimizer    | bool   | False   |
@@ -133,7 +133,7 @@ The project is controlled via a command line interface (CLI) which allows for ru
 
 | Task                     | CUDA Command                                                                                                              | MPS Command                                                                                                              | CPU Command                                                                                                              |
 |--------------------------|---------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| **Training a Model**     | `python cli.py --train --image_path "/path/to/dataset" --batch_size 32 --image_size 128 --epochs 50 --lr 0.001 --adam True --device "cuda"` | `python cli.py --train --image_path "/path/to/dataset" --batch_size 32 --image_size 128 --epochs 50 --lr 0.001 --adam True --device "mps"` | `python cli.py --train --image_path "/path/to/dataset" --batch_size 32 --image_size 128 --epochs 50 --lr 0.001 --content_loss 0.01 --adam True --device "cpu"` |
+| **Training a Model**     | `python cli.py --train --image_path "/path/to/dataset" --batch_size 1 --image_size 256 --epochs 1000 --lr 0.0002 --adam True --device "cuda"` | `python cli.py --train --image_path "/path/to/dataset" --batch_size 1 --image_size 256 --epochs 1000 --lr 0.0002 --adam True --device "mps"` | `python cli.py --train --image_path "/path/to/dataset" --batch_size 1 --image_size 256 --epochs 1000 --lr 0.0002 --content_loss 0.01 --adam True --device "cpu"` |
 | **Testing a Model**      | `python cli.py --test_result --model "/path/to/saved_model.pth" --device "cuda"`                                              | `python cli.py --test_result --model "/path/to/saved_model.pth" --device "mps"`                                              | `python main.py --test_result --model "/path/to/saved_model.pth" --device "cpu"`                                              |
 | **Single Image Inference** | `python inference.py --single_image --image "/path/to/image.jpg" --XtoY "/path/to/saved_model.pth --YtoX "/path/to/saved_model.pth" --device "cuda"`               | `python inference.py --single_image --image "/path/to/image.jpg" --XtoY "/path/to/saved_model.pth --YtoX "/path/to/saved_model.pth --device "mps"`               | `python inference.py --single_image --image "/path/to/image.jpg" --XtoY "/path/to/saved_model.pth --YtoX "/path/to/saved_model.pth --device "cpu"`               |
 | **Batch Image Inference** | `python inference.py --batch_image --XtoY "/path/to/saved_model.pth --YtoX "/path/to/saved_model.pth --image_path "/path/to/dataset" --device "cuda"`                                            | `python inference.py --batch_image --XtoY "/path/to/saved_model.pth --YtoX "/path/to/saved_model.pth --image_path "/path/to/dataset" --device "mps"`                                           | `python inference.py --batch_image --XtoY "/path/to/saved_model.pth --YtoX "/path/to/saved_model.pth --image_path "/path/to/dataset" --device "cpu"`                                            |
@@ -165,7 +165,6 @@ trainer = Trainer(
     device='cuda',             # Computation device ('cuda', 'mps', 'cpu')
     adam=True,                 # Use Adam optimizer; set to False to use SGD if implemented
     SGD=False,                 # Use Stochastic Gradient Descent optimizer; typically False if Adam is True
-    is_lr_scheduler=False,     # Enable a learning rate scheduler
     is_display=True            # Display training progress and statistics
 )
 
