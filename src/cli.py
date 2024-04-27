@@ -124,7 +124,7 @@ def cli():
 
         with open("trained_config.yml", "w") as file:
             yaml.safe_dump(
-                data={
+                {
                     "trained_params": {
                         "image_path": args.image_path,
                         "image_size": args.image_size,
@@ -139,7 +139,7 @@ def cli():
                         "SGD": args.SGD,
                     }
                 },
-                file=file,
+                file,
                 default_flow_style=False,
             )
 

@@ -10,6 +10,8 @@ path:
   train_gif: ./outputs/train_gif
   test_result : ./outputs/test_result/
   train_metrics: ./metrics/
+  single_result : ./results/single_results/
+  batch_results: ./results/batch_results
 
 model:
   beta1: 0.5
