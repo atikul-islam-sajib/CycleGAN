@@ -98,7 +98,7 @@ For detailed documentation on the dataset visit the [Dataset - GitHub](https://g
 
 ### User Guide Notebook - CLI
 
-For detailed documentation on the implementation and usage, visit the -> [Cycle-GAN Notebook - CLI](https://github.com/atikul-islam-sajib/CycleGAN/blob/main/research/notebooks/ModelTrain-CLI.ipynb).
+For detailed documentation on the implementation and usage, visit the -> [Cycle-GAN Notebook - CLI](https://github.com/atikul-islam-sajib/CycleGAN/blob/main/research/notebooks/ModelTrain_CLI.ipynb).
 
 ### User Guide Notebook - Custom Modules
 
