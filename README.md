@@ -102,7 +102,7 @@ For detailed documentation on the implementation and usage, visit the -> [Cycle-
 
 ### User Guide Notebook - Custom Modules
 
-For detailed documentation on the implementation and usage, visit the -> [Cycle-GAN Notebook - CM](https://github.com/atikul-islam-sajib/CycleGAN/blob/main/research/notebooks/ModelTrain-CM.ipynb).
+For detailed documentation on the implementation and usage, visit the -> [Cycle-GAN Notebook - CM](https://github.com/atikul-islam-sajib/CycleGAN/blob/main/research/notebooks/ModelTrain_CM.ipynb).
 
 <!-- ### Model History
 
