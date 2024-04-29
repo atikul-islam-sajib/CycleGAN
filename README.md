@@ -104,6 +104,10 @@ For detailed documentation on the implementation and usage, visit the -> [Cycle-
 
 For detailed documentation on the implementation and usage, visit the -> [Cycle-GAN Notebook - CM](https://github.com/atikul-islam-sajib/CycleGAN/blob/main/research/notebooks/ModelTrain_CM.ipynb).
 
+#### Training model history 
+
+<img src="https://github.com/atikul-islam-sajib/CycleGAN/blob/main/research/files/train_metrics.png" alt="AC-GAN - Medical Image Dataset Generator: Generated Image with labels">
+
 <!-- ### Model History
 
 For detailed documentation on the implementation and usage, visit the -> [CycleGAN Model History](https://github.com/atikul-islam-sajib/SRGAN/blob/main/checkpoints/model_history/history.csv). -->
